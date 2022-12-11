@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+void main()
+{
+    int age;
+    float amount,disc=0,add=0,final_am;
+    char s,g;
+    
+    fflush(stdin);
+    printf("Enter your age: ");
+    scanf("%d",&age);
+    fflush(stdin);
+    printf("Enter your gender: ");
+    scanf("%c",&g);
+    
+    fflush(stdin);
+    printf("are you smoker(y/n): ");
+    scanf("%c",&s);
+    
+    if(age>=21 && age<=30)
+        amount=10000;
+    else if(age>=31 && age<=40)
+        amount=15000;
+    else if(age>=41 && age<=50)
+        amount=20000;
+    else if(age>=51 && age <60)
+        amount=40000;
+    else{
+        printf("Sorry! insurance is not possible ");
+        getch();
+        exit(1);
+    }
+    if(g=='f')
+        disc=amount*10/100;
+    if(s=='y')
+        add=amount*10/100;
+    final_am=amount-disc+add;
+    printf("Final amount is: %f",final_am);
+    getch();
+}
+

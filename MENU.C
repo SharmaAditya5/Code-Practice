@@ -1,3 +1,4 @@
+//menu base program to find factorial, x to the power and sum of digit
 #include<stdio.h>
 #include<conio.h>
 int fact(int a)

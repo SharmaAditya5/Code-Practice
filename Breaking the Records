@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int a[n];
+    int max,min,res[2]={0};
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    max=min=a[0];
+    for(int i=1;i<n;i++)
+    {
+        if(min>a[i])
+        {
+            res[1]++;
+            min=a[i];
+        }
+        if(max<a[i])
+        {
+            res[0]++;
+            max=a[i];
+        }
+    }
+    cout<<res[0]<<" "<<res[1];
+    
+}

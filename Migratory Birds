@@ -1,0 +1,35 @@
+/*Given an array of bird sightings where every element represents a bird type id,
+determine the id of the most frequently sighted type. If more than 1 type has been
+spotted that maximum amount, return the smallest of their ids */
+#include <bits/stdc++.h>
+
+using namespace std;
+int count(int a[],int n,int k)
+{
+    int c=0;
+    for(int i=0;i<n;i++)
+    {
+        if(a[i]==k)
+            c++;
+    }
+    return c;
+}
+int main()
+{
+    int n,occur,max=1,no;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++)
+        cin>>a[i];
+    for(int i=1;i<=5;i++)
+    {
+        occur=count(a,n,i);
+        if(occur>max)
+        {
+            max=occur;
+            no=i;
+        }
+    }
+    cout<<no;
+    
+}

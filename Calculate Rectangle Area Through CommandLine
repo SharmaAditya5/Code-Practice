@@ -1,0 +1,16 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main(int argc,char *argv[])
+{
+    int l,b,r;
+    if(argc!=3)
+    {
+        printf("invalid number of arguments:");
+        return 0;
+    }
+    l=atoi(argv[1]);
+    b=atoi(argv[2]);
+    r=l*b;
+    printf("Area of recangle is: %d",r);
+    return 0;
+}

@@ -1,0 +1,149 @@
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+typedef struct lklist{
+    int info;
+    struct lklist *next;
+}node;
+void menu()
+{
+        printf("---------MENU---------");
+        printf("\n\n1. Insert at begning");
+        printf("\n2. Insert at last");
+        printf("\n3. Insert after a particular element");
+        printf("\n4. Delete from begning");
+        printf("\n5. Delete from last");
+        printf("\n6. Display list");
+        printf("\n7. Exit");
+}
+
+void insert_at_begning(node **start)
+{
+    int item;
+    node *temp,*sp=*start,*prev;
+    temp=(node *)malloc(sizeof(node));
+    printf("\nEnter the value to be insert: ");
+    scanf("%d",&item);
+    temp->info=item;
+    if(sp!=NULL)
+    {
+        if(sp->info<item)
+        {
+                while((sp!=NULL) && ((sp->info)<item) )
+                {
+                    prev=sp;
+                    sp=sp->next;
+                    
+                }
+                prev->next=temp;
+                temp->next=sp;
+        }
+
+        else{  
+            temp->next=(*start);
+            *start=temp;
+        }
+    }
+    else{  
+            temp->next=(*start);
+            *start=temp;
+        }
+}
+
+void display(node *start)
+{
+    while(start!=NULL)
+    {
+        printf("%d->",start->info);
+        start=start->next;
+    }
+    printf("NULL");
+}
+
+void insert_at_last(node **head)
+{
+    int item;
+    node *temp,*loc;
+    temp=(node *)malloc(sizeof(node));
+    printf("\nEnter the value to be insert: ");
+    scanf("%d",&item);   
+    temp->info=item;
+    temp->next=NULL;
+    if(*head==NULL)
+    {
+        *head=temp;
+    }
+    else
+    {
+            loc=*head;
+            while(loc->next!=NULL)
+            {
+                loc=loc->next;
+            }
+            loc->next=temp;
+    }
+}
+
+void insert_after(node *head)
+{
+    int k,item;
+    node *temp;
+    temp=(node*)malloc(sizeof(node));
+    printf("Enter the value after which insertion is required: ");
+    scanf("%d",&k);
+    printf("Enter the value to be insert:");
+    scanf("%d",&item);
+    temp->info=item;
+    while(head->info!=k)
+        head=head->next;
+    temp->next=head->next;
+    head->next=temp;
+    
+}
+
+void delete_from_beg()
+{
+
+}
+
+void delete_from_last()
+{
+
+}
+int main()
+{
+    int n,k;
+    node *head=NULL;
+    while(1)
+    {
+        menu();
+        printf("\n\n\tEnter your choice: ");
+        scanf("%d",&n);
+        switch(n)
+        {
+            case 1:
+                insert_at_begning(&head);
+                break;
+            case 2:
+                insert_at_last(&head);
+                break;
+            case 3:
+                insert_after(head);
+                break;
+            case 4:
+                delete_from_beg(&head);
+                break;
+            case 5:
+                delete_from_last(&head);
+                break;
+            case 6:
+                display(head);
+                break;
+            case 7:
+                return 0;
+            default:
+                printf("\nInvalid choice!");
+
+        }getch();
+    }
+}

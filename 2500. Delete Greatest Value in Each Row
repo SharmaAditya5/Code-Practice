@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int deleteGreatestValue(vector<vector<int>>& grid) {
+        int r=grid.size(),c=grid[0].size();
+        int cm,rm,max,index,ans=0;
+        lab:
+        max=0;
+        for(int i=0;i<r;i++)
+        {
+            cm=0;
+            for(int j=0;j<c;j++)
+            {
+                if(grid[i][j]>cm)
+                {
+                    cm=grid[i][j];
+                    index=j;
+                }
+
+            } 
+        grid[i].erase(grid[i].begin()+index);
+            if(cm>max)
+                max=cm;
+        }
+        ans=ans+max;
+        c--;
+        if(c!=0)
+            goto lab;
+        return ans;
+    }
+};

@@ -1,0 +1,125 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct PolyNo{
+    int cof,pow;
+    struct PolyNo *next;
+}poly;
+void Traverse(poly *p)
+{
+    printf("\n");
+    while(p->next!=NULL)
+    {
+        printf("%dX^%d+",p->cof,p->pow);
+        p=p->next;
+    }
+    printf("%dX^%d",p->cof,p->pow);
+}
+
+void insert_at_begning(poly **start,int co,int po)
+{
+    int item;
+    poly *temp,*sp=*start,*prev;
+    temp=(poly*)malloc(sizeof(poly));
+    
+    temp->cof=co;
+    temp->pow=po;
+    if(sp!=NULL)
+    {
+        if(sp->pow > po)
+        {
+                while((sp!=NULL) && ((sp->pow)>po) )
+                {
+                    prev=sp;
+                    sp=sp->next;
+                    
+                }
+                prev->next=temp;
+                temp->next=sp;
+        }
+
+        else{  
+            temp->next=(*start);
+            *start=temp;
+        }
+    }
+    else{  
+            temp->next=(*start);
+            *start=temp;
+        }
+}
+
+
+void insert(poly **p,int co,int po)
+{
+    poly *temp;
+    temp=(poly*)malloc(sizeof(poly));
+    temp->cof=co;
+    temp->pow=po;
+    temp->next=*p;
+    *p=temp;
+}
+void add(poly **p3,poly *p1,poly *p2)
+{
+    poly *temp;
+        while(p1!=NULL && p2!=NULL)
+        {
+            if(p1->pow == p2->pow)
+            {
+                insert_at_begning(p3,p1->cof+p2->cof,p1->pow);
+                p1=p1->next;
+                p2=p2->next;
+            }
+            else if(p1->pow > p2->pow)
+            {
+                insert(p3,p1->cof,p1->pow);
+                p1=p1->next;
+            }
+            
+            else
+            {
+                insert(p3,p2->cof,p2->pow);
+                p2=p2->next;
+            }
+        }
+        temp=*p3;
+        while(temp->next!=NULL)
+            temp=temp->next;
+        if(p1!=NULL)
+            temp->next=p1;
+        else
+            temp->next=p2;
+
+}
+void main()
+{
+    poly *p1,*p2,*p3;
+    int t,co,po,i;
+    p1=p2=p3=NULL;
+    printf("Enter polynomial one\n ");
+    printf("Enter the number of terms: ");
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        printf("Enter the cofficient: ");
+        scanf("%d",&co);
+        printf("Enter the power: ");
+        scanf("%d",&po);
+        insert(&p1,co,po);
+    }
+    
+    printf("Enter polynomial Two\n");
+    printf("Enter the number of terms: ");
+    scanf("%d",&t);
+    for(i=0;i<t;i++)
+    {
+        printf("Enter the cofficient: ");
+        scanf("%d",&co);
+        printf("Enter the power: ");
+        scanf("%d",&po);
+        insert(&p2,co,po);
+    }
+    Traverse(p1);
+    Traverse(p2);
+    add(&p3,p1,p2);
+    Traverse(p3);
+}

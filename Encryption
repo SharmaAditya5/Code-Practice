@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+#include<string>
+#include<algorithm>
+using namespace std;
+
+/*
+ * Complete the 'encryption' function below.
+ *
+ * The function is expected to return a STRING.
+ * The function accepts STRING s as parameter.
+ */
+
+string encryption(string s) {
+s.erase(remove(s.begin(), s.end(), ' '), s.end()); //remove A from string
+int l=s.length();
+int r=floor(sqrt(l));
+int c=ceil(sqrt(l));
+if((r*c)<l)
+{
+    r=c=max(r,c);
+}
+
+int k=0;
+char res[r][c];
+for(int i=0;i<r;i++)
+{
+    for(int j=0;j<c;j++)
+    {
+        res[i][j]=s[k++];
+    }
+    
+}
+string result;
+for(int i=0;i<c;i++)
+{
+    for(int j=0;j<r;j++)
+    {
+        if((res[j][i]<97)||(res[j][i]>122))
+        {
+                cout<<"last "<<(result[result.length()-1])<<endl;
+                break;
+        }
+            
+        result.push_back(res[j][i]);
+    }
+        
+    
+    
+        result.push_back(' ');
+    
+    
+    
+}
+ 
+result.pop_back();
+return result;
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string s;
+    getline(cin, s);
+
+    string result = encryption(s);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}

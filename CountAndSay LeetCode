@@ -1,0 +1,33 @@
+class Solution {
+public:
+    string countAndSay(int n) {
+        string s="1";
+        if(n==1)
+            return s;
+        else{
+            string temp="";
+            int c=0;
+            for(int i=2;i<=n;i++)
+            {
+                
+                temp="";
+                for(int j=0;j<s.length();j++)
+                {
+                    c=1;
+                    while((j+1)<s.length()&&(s[j]==s[j+1]))
+                    {
+                        c++;
+                        j++;
+                    }
+                    string t = to_string(c);
+                    char const *ca = t.c_str();
+                    temp.push_back(*ca);
+                    temp.push_back(s[j]);
+                }
+                cout<<temp<<endl;
+                s=temp;
+            }
+        }
+        return s;
+    }
+};

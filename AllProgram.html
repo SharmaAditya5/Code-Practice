@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ten Programs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container d-flex justify-content-center 
+    align-items-center"
+    style="min-height:100vh;">
+    <div class="border shadow p-3 rounded">
+        <input class="mb-3" type="text" name="input" id="input" placeholder="Enter a number">
+
+        <div class="mb-3"><input type="radio" name="option"  onclick="factorial()"> factorial</div>
+        <div class="mb-3"><input type="radio" name="option"  onclick="isPrime()"> Is Prime</div>
+        <div class="mb-3"><input type="radio" name="option" onclick="isOdd()"> Is Odd</div>
+        <div class="mb-3"><input type="radio" name="option" onclick="isEven()" > Is Even</div>
+        <div class="mb-3"><input type="radio" name="option" onclick="CountDigit()" > Count Digits</div>
+        <div class="mb-3"><input type="radio" name="option" onclick="SumOfDigit()"> Sum of Digits</div>
+        <div class="mb-3"><input type="radio" name="option" onclick="NthFibo()"> Nth fibonacci</div>
+        <div class="mb-3"><input type="radio" name="option" onclick="RevNumber()"> Reverse Number</div>
+        <div class="mb-3"><input type="radio" name="option" onclick="RevString()"> Reverse String</div>
+    </div>
+</div>
+<script>
+    function factorial()
+    {
+        let a=document.getElementById("input").value;
+        if(a==0)
+            document.getElementById("input").value=1;
+        else{
+            for(var i=a-1;i>=1;i--)
+            {
+                a*=i;
+            }
+            document.getElementById("input").value=a;
+        }
+
+    }
+    function isPrime()
+    {
+        let a=document.getElementById("input").value;
+    
+        for(var i=2;i<=a/2;i++)
+        {
+            if(a%i==0)
+            {
+                document.getElementById("input").value="False";    
+                return;
+            }
+        }
+        document.getElementById("input").value="True";
+    }
+    function isOdd()
+    {
+        let a=document.getElementById("input").value;
+        if(a%2!=0)
+            document.getElementById("input").value="True";
+        else
+            document.getElementById("input").value="False";
+    }
+    
+    function isEven()
+    {
+        let a=document.getElementById("input").value;
+        if(a%2==0)
+            document.getElementById("input").value="True";
+        else
+            document.getElementById("input").value="False";
+    }
+    
+    function SumOfDigit()
+    {
+        let a=document.getElementById("input").value;
+        var sum=0;
+        while(a>0)
+        {
+            sum+=a%10;
+            a=parseInt(a/10);
+        }
+        document.getElementById("input").value=sum;
+    }
+    function CountDigit()
+    {
+        let a=Number(document.getElementById("input").value);
+        let c=0;
+        while(a>0)
+        {
+            c=c+1;
+            a=parseInt(a/10);
+           // document.write(a);
+           // document.write("</br>")
+        }
+        document.getElementById("input").value=c;
+    }
+    function RevNumber()
+    {
+       
+        let a=document.getElementById("input").value;
+        var sum=0;
+        while(a>0)
+        {
+            sum=sum*10+a%10;
+            a=parseInt(a/10);
+        }
+        document.getElementById("input").value=sum;
+    }
+    function RevString()
+    {
+        
+        let a=toString(document.getElementById("input").value);
+        let b="";
+        let n=5,j=0;
+        for(let i=n-1;i>=0;i--)
+        {
+            document.write(a[i]);
+            document.write("</br>");
+            b+=a[i];
+            
+        }
+        document.getElementById("input").value=b;
+    }
+    function fib(n){
+        if(n==0)
+        return 0;
+        if(n==1)
+        return 1;
+        return fib(n-1)+fib(n-2);
+        }
+    function NthFibo()
+    {
+        let n=document.getElementById("input").value;
+        let x=fib(n);
+        document.getElementById("input").value=x;
+    }
+
+
+    
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,54 @@
+                                  Script.js
+
+const Url = "https://microsoftedge.github.io/Demos/json-dummy-data/64KB.json";
+async function getapi(url) {
+  const response = await fetch(Url);
+  var data = await response.json();
+  console.log(data);
+  show(data);
+}
+
+function show(data) {
+  let tab = `<tr>
+		<th class="text-center">Id</th>
+		<th class="text-center">Name</th>
+		<th class="text-center">Language</th>
+    <th class="text-center">Bio</th>
+		</tr>`;
+
+  for (let r of data) {
+    tab += `<tr>
+	<td>${r.id} </td>
+	<td>${r.name}</td>
+  <td>${r.language}</td>
+	<td>${r.bio}</td>
+		
+</tr>`;
+  }
+
+  document.getElementById("employees").innerHTML = tab;
+}
+
+getapi(Url);
+
+
+                            INDEX.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="script.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetching Api</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <h1 class="text-center">Fetched List</h1>
+    <table class="table text-center" id="employees">
+      
+    </table>
+  </body>
+</html>
